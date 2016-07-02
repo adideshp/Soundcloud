@@ -1,0 +1,35 @@
+<div class="md-padding" flex layout-sm="column" ng-controller="DashboardCtrl">
+    <iframe id="sc-widget" width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true"></iframe>
+    <div layout>
+        <md-input-container style="margin-right: 10px;">
+                <label>Select your favourite genere</label>
+                <md-select ng-model="selectedGenere">
+                  <md-option ng-repeat="genere in generes" value="{{genere}}">{{genere}}</md-option>
+                </md-select>
+        </md-input-container>
+              <div flex="10" layout layout-align="center center">
+                <span class="md-body-1">BPM</span>
+              </div>
+              <md-slider flex class="md-primary" md-discrete ng-model="bpm" step="10" min="40" max="200" aria-label="rating" style="margin-top: 15px;">
+              </md-slider>
+    </div>
+    <md-button class="md-raised md-warn" ng-click="getSongs();">Get Songs from SoundCloud</md-button>
+    <div flex-gt-sm="150" flex style="margin-top: 20px;">
+        <md-content>
+          <md-list flex>
+            <md-list-item class="md-3-line" ng-repeat="track in tracks" ng-click="startNewSongList($index)">
+              <img ng-src="{{track.artwork_url}}" class="md-avatar"/>
+              <div class="md-list-item-text" layout="column">
+                <h3>{{ track.title }}</h3>
+                <p>
+                    <b>Likes :</b> {{ track.likes_count }}
+                    <b> Comments :</b> {{ track.comment_count }}
+                    <b> No. of times Played :</b> {{ track.playback_count }}
+
+                </p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+    </div>
+</div>
